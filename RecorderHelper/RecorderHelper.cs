@@ -18,7 +18,7 @@ namespace RecorderHelper
         {
             List<Recorder> recordList = new List<Recorder>();
 
-            // Create a DiscRecorder object for the specified burning device.
+            // Create a DiscMaster2 object to connect to optical drives.
             MsftDiscMaster2 discMaster = new MsftDiscMaster2();
             for (int i = 0; i < discMaster.Count; i++)
             {

@@ -134,26 +134,24 @@ namespace RecorderHelper
                     return;
                 }
                 if (dataWriter.FreeSectorsOnMedia >= 0)
-                {
+                {   //可用大小
                     FreeDiskSize = dataWriter.FreeSectorsOnMedia * 2048L;
                 }
 
                 if (dataWriter.TotalSectorsOnMedia >= 0)
-                {
+                {   //总大小
                     TotalDiskSize = dataWriter.TotalSectorsOnMedia * 2048L;
                 }
-                CurMediaState = dataWriter.CurrentMediaStatus;
+                CurMediaState = dataWriter.CurrentMediaStatus;  //媒体状态
                 CurMediaStateName = RecorderHelper.GetMediaStateName(CurMediaState);
-                CurMediaType = dataWriter.CurrentPhysicalMediaType;
+                CurMediaType = dataWriter.CurrentPhysicalMediaType; //媒介类型
                 CurMediaTypeName = RecorderHelper.GetMediaTypeName(CurMediaType);
-                CanBurn = RecorderHelper.GetMediaBurnAble(CurMediaState);
+                CanBurn = RecorderHelper.GetMediaBurnAble(CurMediaState);   //判断是否可刻录
             }
             catch (COMException ex)
             {
-                //string errorMsg = IMAPIReturnValues.GetName(ex.ErrorCode);
                 string errMsg = ex.Message.Replace("\r\n", ""); //去掉异常信息里的\r\n
                 this.CurMediaStateName = $"COM Exception:{errMsg}";
-                //throw new Exception($"The following COM Exception occured:{ex.Message}-{errorMsg}");
             }
             catch (Exception ex)
             {
@@ -207,7 +205,6 @@ namespace RecorderHelper
             {
                 throw new Exception($"已存在媒体名称为{media.MediaName}的对象");
             }
-            // Add the directory and its contents to the file system 
             BurnMediaList.Add(media);
             BurnMediaFileSize += fileSize;
             return media;
