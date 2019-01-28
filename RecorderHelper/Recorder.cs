@@ -352,6 +352,13 @@ namespace RecorderHelper
             }
         }
 
+        /// <summary>
+        /// 弹出媒体
+        /// </summary>
+        void EjectMedia()
+        {
+            msRecorder.EjectMedia();
+        }
 
         /// <summary>
         /// 获取指定路径的大小
